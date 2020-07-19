@@ -17,11 +17,14 @@ from linebot.models import (
 app = Flask(__name__)
 
 #環境変数取得
-YOUR_CHANNEL_ACCESS_TOKEN = os.environ["y5bUVlwAsWLFdTDRMc3l/+PR92GUZymNnzFLWZg5oj6ESdpaK00Za2zFO+eqcc2uO+Y4kKUvoGuIVV8zAmUad9wmrK8Y+y8dNEK76wnIQEWmzkfOktPHve93GCI9+SeCpsPLleLlRjij9QbGK3UyrwdB04t89/1O/w1cDnyilFU="]
-YOUR_CHANNEL_SECRET = os.environ["0d1a4eba93553b37d583273475d449ad"]
+#YOUR_CHANNEL_ACCESS_TOKEN = os.environ["y5bUVlwAsWLFdTDRMc3l/+PR92GUZymNnzFLWZg5oj6ESdpaK00Za2zFO+eqcc2uO+Y4kKUvoGuIVV8zAmUad9wmrK8Y+y8dNEK76wnIQEWmzkfOktPHve93GCI9+SeCpsPLleLlRjij9QbGK3UyrwdB04t89/1O/w1cDnyilFU="]
+#YOUR_CHANNEL_SECRET = os.environ["0d1a4eba93553b37d583273475d449ad"]
 
-line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+#line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+#handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+
+line_bot_api = LineBotApi("y5bUVlwAsWLFdTDRMc3l/+PR92GUZymNnzFLWZg5oj6ESdpaK00Za2zFO+eqcc2uO+Y4kKUvoGuIVV8zAmUad9wmrK8Y+y8dNEK76wnIQEWmzkfOktPHve93GCI9+SeCpsPLleLlRjij9QbGK3UyrwdB04t89/1O/w1cDnyilFU=")
+handler = WebhookHandler("0d1a4eba93553b37d583273475d449ad")
 
 #アプリケーション本体をopenすると実行される
 @app.route("/")
@@ -61,5 +64,6 @@ def handle_message(event):
 
 if __name__ == "__main__":
 #    app.run()
-    port = int(os.getenv("PORT"))
+    port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+    app.run()
