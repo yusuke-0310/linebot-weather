@@ -52,18 +52,33 @@ def callback():
 #メッセージ受信時のイベント
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    '''
+    #'''
     #line_bot_apiのreply_messageメソッドでevent.message.text(ユーザのメッセージ)を返信
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
-    '''
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=sc.getWeather))
+    #line_bot_api.reply_message(
+        #event.reply_token,
+        #TextSendMessage(text=event.message.text))
+    #'''
+    #line_bot_api.reply_message(
+        #event.reply_token,
+        #TextSendMessage(text=sc.getWeather))
+    push_text = event.message.text
+
+    #リプライする文字列
+    if push_text == "天気":
+        url = 'http://weather.livedoor.com/forecast/webservice/json/v1?city=130010'
+        api_data = requests.get(url).json()
+        for weather in api_data['forecasts']:
+            weather_date = weather['dateLabel']
+            weather_forecasts = weather['telop']
+            print(weather_date + ':' + weather_forecasts)
+        reply_text = api_data["description"]["text"]
+    else:
+        reply_text = push_text
+
+    #リプライ部分の記述
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=reply_text))
 
 if __name__ == "__main__":
 #    app.run()
     port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-    app.run()
