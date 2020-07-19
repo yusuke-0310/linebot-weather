@@ -17,9 +17,6 @@ from linebot.models import (
 app = Flask(__name__)
 
 #環境変数取得
-YOUR_CHANNEL_ACCESS_TOKEN = os.environ["LINE_BOT_CHANNEL_TOKEN"]
-YOUR_CHANNEL_SECRET = os.environ["LINE_BOT_CHANNEL_SECRET"]
-
 line_bot_api = LineBotApi("y5bUVlwAsWLFdTDRMc3l/+PR92GUZymNnzFLWZg5oj6ESdpaK00Za2zFO+eqcc2uO+Y4kKUvoGuIVV8zAmUad9wmrK8Y+y8dNEK76wnIQEWmzkfOktPHve93GCI9+SeCpsPLleLlRjij9QbGK3UyrwdB04t89/1O/w1cDnyilFU=")
 handler = WebhookHandler("0d1a4eba93553b37d583273475d449ad")
 
@@ -58,7 +55,6 @@ def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=sc.getWeather))
-    )
 
 if __name__ == "__main__":
 #    app.run()
