@@ -4,14 +4,14 @@ import os
 import scrape as sc
 
 from linebot import (
-        LineBotApi, WebhookHandler
+    LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
-        InvalidSignatureError
+    InvalidSignatureError
 )
 #LINEでのイベントを取得
 from linebot.models import (
-        MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage,
 )
 
 app = Flask(__name__)
@@ -56,8 +56,8 @@ def handle_message(event):
         TextSendMessage(text=event.message.text))
     '''
     line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=sc.getWeather))
+        event.reply_token,
+        TextSendMessage(text=sc.getWeather))
     )
 
 if __name__ == "__main__":
