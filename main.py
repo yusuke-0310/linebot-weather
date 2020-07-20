@@ -2,6 +2,8 @@
 from flask import Flask, request, abort
 import os
 import scrape as sc
+import requests
+import pprint
 
 from linebot import (
     LineBotApi, WebhookHandler
