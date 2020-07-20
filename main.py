@@ -66,7 +66,7 @@ def handle_message(event):
     push_text = event.message.text
 
     #リプライする文字列
-    if push_text == "天気":
+    if push_text == "しゅん天気教えて" or "のん天気教えて" or "天気":
         url = 'http://weather.livedoor.com/forecast/webservice/json/v1?city=110010'
         api_data = requests.get(url).json()
         for weather in api_data['forecasts']:
