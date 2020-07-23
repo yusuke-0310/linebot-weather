@@ -72,8 +72,7 @@ def handle_message(event):
         for weather in api_data['forecasts']:
             weather_date = weather['dateLabel']
             weather_forecasts = weather['telop']
-            reply = print(weather_date + ':' + weather_forecasts)
-        reply_text = reply
+            reply_text = print(weather_date + ':' + weather_forecasts)
         #reply_text = api_data["description"]["text"]
     else:
         reply_text = push_text
