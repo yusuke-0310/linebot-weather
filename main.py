@@ -71,29 +71,28 @@ def handle_message(event):
         url = 'http://weather.livedoor.com/forecast/webservice/json/v1?city=110010'
         response = requests.get(url)
         weather_data = json.loads(response.text)
-        reply_text = '''
-                    pprint(wether_data['forecasts'][0]['date'])
-                    print('最高気温')
-                    pprint(weather_data['forecasts'][0]['image']['height'])
-                    print('天気予想')
-                    pprint(weather_data['forecasts'][0]['image']['title'])
-                    print('最高気温')
-                    pprint(wether_data['forecasts'][0]['temperature']['max']['celsius'])
-                    print('最低気温')
-                    pprint(weather_data['forecasts'][0]['temperature']['min']['celsius'])
-                    '''
-        #api_data = requests.get(url).json()
-        #for weather in api_data['forecasts']:
-            #weather_date = weather['dateLabel']
-            #weather_forecasts = weather['telop']
-            #reply_text = print(weather_date + ':' + weather_forecasts)
-        #reply_text = api_data["description"]["text"]
+        #reply_text = '''
+                    #pprint(wether_data['forecasts'][0]['date'])
+                    #print('最高気温')
+                    #pprint(weather_data['forecasts'][0]['image']['height'])
+                    #print('天気予想')
+                    #pprint(weather_data['forecasts'][0]['image']['title'])
+                    #print('最高気温')
+                    #pprint(wether_data['forecasts'][0]['temperature']['max']['celsius'])
+                    #print('最低気温')
+                    #pprint(weather_data['forecasts'][0]['temperature']['min']['celsius'])
+                    #'''
+        api_data = requests.get(url).json()
+        for weather in api_data['forecasts']:
+            weather_date = weather['dateLabel']
+            weather_forecasts = weather['telop']
+            reply_text = print(weather_date + ':' + weather_forecasts)
+        reply_text = api_data["description"]["text"]
     else:
         reply_text = push_text
 
     #リプライ部分の記述
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=reply_text))
-
 if __name__ == "__main__":
 #    app.run()
     port = int(os.getenv("PORT", 5000))
